@@ -80,13 +80,14 @@ python3 collector.py check-expiry
 
 ### 钱包配置 | Wallet Config
 
-**为什么要配置钱包？** 
+**使用方式**：直接告诉你的 AI Agent 钱包地址，例如：
+> "帮我追踪钱包 0x1234...abcd，命名为「主钱包」"
 
-本项目使用 Puppeteer 爬取 DeBank 网站获取钱包资产。配置钱包地址后，系统会自动访问 `https://debank.com/profile/{address}` 并提取该地址的总资产值。
+Agent 会自动将地址写入 `config/wallets.yaml`，无需手动编辑。
 
-这是一个**免费方案**（DeBank API 需付费），无需 API Key。
+**技术原理**：系统使用 Puppeteer 爬取 DeBank 网站 `https://debank.com/profile/{address}` 提取总资产（免费方案，DeBank API 需付费）。
 
-在 `config/wallets.yaml` 添加以太坊地址：
+配置文件格式：
 
 ```yaml
 wallets:

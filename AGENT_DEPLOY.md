@@ -21,9 +21,19 @@ npm install
 
 ## 3. 配置 API Keys
 cp config/secrets.yaml.example config/secrets.yaml
-cp config/wallets.yaml.example config/wallets.yaml
 
 编辑 secrets.yaml，填入交易所的只读 API Key（Binance/Bybit/OKX/Bitget）
+
+## 4. 钱包地址（可选）
+用户直接告诉你钱包地址，你帮他写入 config/wallets.yaml：
+> 用户: "帮我追踪钱包 0x1234...，命名为「主钱包」"
+
+格式：
+```yaml
+wallets:
+  - address: "0x..."
+    label: "主钱包"
+```
 
 ## 4. 首次采集
 cd src && python3 collector.py
@@ -111,11 +121,11 @@ cp config/wallets.yaml.example config/wallets.yaml
 
 ### 钱包地址（用于爬取 DeBank 获取链上资产）
 
-**原理**：使用 Puppeteer 爬取 DeBank 网站 `https://debank.com/profile/{address}`，提取钱包总资产。
+**使用方式**：用户直接告诉 Agent 钱包地址，Agent 写入 `config/wallets.yaml`
 
-这是免费方案（DeBank API 需付费）。
+**原理**：使用 Puppeteer 爬取 DeBank 网站 `https://debank.com/profile/{address}`，提取钱包总资产（免费方案）。
 
-在 `config/wallets.yaml` 添加：
+配置文件格式：
 
 ### 3. Initialize Database
 
