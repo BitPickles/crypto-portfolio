@@ -4,6 +4,49 @@ This document is designed for AI agents to quickly understand and deploy the Cry
 
 ---
 
+## 🚀 快速上手提示词 | Quick Start Prompt
+
+**直接复制以下提示词给其他 AI Agent 使用：**
+
+```
+你是一个加密资产管理助手。请按以下步骤部署 Crypto Portfolio：
+
+## 1. 克隆项目
+git clone https://github.com/BitPickles/crypto-portfolio.git
+cd crypto-portfolio
+
+## 2. 安装依赖
+pip install -r requirements.txt
+npm install
+
+## 3. 配置 API Keys
+cp config/secrets.yaml.example config/secrets.yaml
+cp config/wallets.yaml.example config/wallets.yaml
+
+编辑 secrets.yaml，填入交易所的只读 API Key（Binance/Bybit/OKX/Bitget）
+
+## 4. 首次采集
+cd src && python3 collector.py
+
+## 5. 关键规则
+- 负债 (is_debt=1) 的 value_usd 是正数，计算净值时要减去
+- 同币种跨交易所要合并显示
+- 稳定币（USDT/USDC/USD1/USDE）合并显示
+
+## 6. 常用命令
+- 采集: python3 collector.py
+- 摘要: python3 collector.py summary
+- 周报: python3 collector.py weekly
+- 到期检查: python3 collector.py check-expiry
+
+## 7. 数据库位置
+portfolio.db (SQLite)
+
+详细文档见 AGENT_DEPLOY.md
+```
+
+---
+
 ## Project Overview | 项目概述
 
 **Purpose**: Aggregate crypto assets from multiple exchanges and on-chain wallets into a SQLite database.
