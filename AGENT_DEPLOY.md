@@ -103,9 +103,19 @@ cp config/secrets.yaml.example config/secrets.yaml
 cp config/wallets.yaml.example config/wallets.yaml
 ```
 
-**Required Config**:
-- `config/secrets.yaml`: Fill in exchange API keys (read-only)
-- `config/wallets.yaml`: Add wallet addresses to track
+## 配置说明 | Configuration
+
+### 交易所 API Keys（用于采集 CEX 余额）
+
+在 `config/secrets.yaml` 配置各交易所的只读 API Key。
+
+### 钱包地址（用于爬取 DeBank 获取链上资产）
+
+**原理**：使用 Puppeteer 爬取 DeBank 网站 `https://debank.com/profile/{address}`，提取钱包总资产。
+
+这是免费方案（DeBank API 需付费）。
+
+在 `config/wallets.yaml` 添加：
 
 ### 3. Initialize Database
 

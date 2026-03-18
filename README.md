@@ -80,13 +80,11 @@ python3 collector.py check-expiry
 
 ### 钱包配置 | Wallet Config
 
-**为什么要配置钱包？** 用于追踪链上 DeFi 仓位。
+**为什么要配置钱包？** 
 
-本项目通过 DeBank 网站抓取钱包的链上资产，包括：
-- 钱包原生代币（ETH、BNB、MATIC 等）
-- ERC-20 / BEP-20 代币
-- DeFi 协议仓位（Uniswap、Aave、Curve 等）
-- 跨链资产
+本项目使用 Puppeteer 爬取 DeBank 网站获取钱包资产。配置钱包地址后，系统会自动访问 `https://debank.com/profile/{address}` 并提取该地址的总资产值。
+
+这是一个**免费方案**（DeBank API 需付费），无需 API Key。
 
 在 `config/wallets.yaml` 添加以太坊地址：
 
