@@ -4,55 +4,59 @@ This document is designed for AI agents to quickly understand and deploy the Cry
 
 ---
 
-## 🚀 快速上手提示词 | Quick Start Prompt
+## 🚀 用户快速上手提示词
 
-**直接复制以下提示词给其他 AI Agent 使用：**
+**复制以下内容，发给你的 AI Agent：**
+
+---
 
 ```
-你是一个加密资产管理助手。请按以下步骤部署 Crypto Portfolio：
+请帮我部署 Crypto Portfolio 加密资产管理系统，并创建一个专门的 Agent 负责后续管理。
 
-## 1. 克隆项目
-git clone https://github.com/BitPickles/crypto-portfolio.git
-cd crypto-portfolio
-
-## 2. 安装依赖
+## 第一步：克隆并安装
+git clone https://github.com/BitPickles/crypto-portfolio.git ~/.openclaw/workspace-crypto-portfolio
+cd ~/.openclaw/workspace-crypto-portfolio
 pip install -r requirements.txt
 npm install
 
-## 3. 配置 API Keys
+## 第二步：创建配置文件
 cp config/secrets.yaml.example config/secrets.yaml
 
-编辑 secrets.yaml，填入交易所的只读 API Key（Binance/Bybit/OKX/Bitget）
+## 第三步：创建专用 Agent
+在 ~/.openclaw/agents/ 目录下创建一个新 Agent 配置：
+- 名称：crypto-portfolio
+- 职责：加密资产采集、汇报、到期提醒
+- 工作目录：~/.openclaw/workspace-crypto-portfolio
+- 数据库：~/.openclaw/workspace-crypto-portfolio/portfolio.db
 
-## 4. 钱包地址（可选）
-用户直接告诉你钱包地址，你帮他写入 config/wallets.yaml：
-> 用户: "帮我追踪钱包 0x1234...，命名为「主钱包」"
+## 第四步：配置我的信息
+我会告诉你：
+1. 我的交易所 API Key（只读权限）
+2. 我的钱包地址
 
-格式：
-```yaml
-wallets:
-  - address: "0x..."
-    label: "主钱包"
-```
+你需要帮我写入 config/secrets.yaml 和 config/wallets.yaml
 
-## 4. 首次采集
-cd src && python3 collector.py
+## 第五步：设置定时任务
+- 每天采集资产（早晚各一次）
+- 每天检查到期项目
+- 每周一发送周报
 
-## 5. 关键规则
-- 负债 (is_debt=1) 的 value_usd 是正数，计算净值时要减去
-- 同币种跨交易所要合并显示
-- 稳定币（USDT/USDC/USD1/USDE）合并显示
+## 这个 Agent 的职责
+1. 采集：运行 cd src && python3 collector.py
+2. 汇报：用户问"我的加密资产"时，查询数据库并汇报
+3. 提醒：有项目到期时主动提醒
+4. 记住规则：
+   - 负债(is_debt=1)的 value_usd 是正数，计算净值要减去
+   - 同币种跨交易所要合并
+   - 稳定币（USDT/USDC/USD1/USDE）合并显示
 
-## 6. 常用命令
+## 常用命令
 - 采集: python3 collector.py
 - 摘要: python3 collector.py summary
 - 周报: python3 collector.py weekly
-- 到期检查: python3 collector.py check-expiry
+- 到期: python3 collector.py check-expiry
 
-## 7. 数据库位置
-portfolio.db (SQLite)
-
-详细文档见 AGENT_DEPLOY.md
+完成后告诉我，我会提供 API Key 和钱包地址。
 ```
 
 ---
