@@ -1,0 +1,16 @@
+# Crypto Portfolio Dependencies
+
+# Database
+sqlalchemy>=2.0.0
+
+# HTTP
+requests>=2.28.0
+
+# Config
+pyyaml>=6.0
+
+# CEX - 统一使用 ccxt（支持所有交易所 + 统一账户模式）
+ccxt>=4.0.0
+
+# Utils
+python-dotenv>=1.0.0

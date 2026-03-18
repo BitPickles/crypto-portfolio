@@ -1,0 +1,7 @@
+# 钱包地址配置模板
+# 复制此文件为 wallets.yaml 并填入真实地址
+
+wallets:
+  - address: "0xYourEthereumAddressHere"
+    label: "主钱包"
+    # expires_at: "2026-06-30"  # 可选：到期提醒日期
